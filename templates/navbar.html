@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav bar</title>
+</head>
+<body>
+    <nav class="bg-gray-200 p-4">
+        <ul class="flex space-x-4">
+            <li><a href="{% url 'home' %}" class="text-gray-800">Home</a></li>
+            
+            <li><a href="#" class="text-gray-800">Product</a></li>
+            <li><a href="#" class="text-gray-800">Manage users</a></li>
+            <li><a href="{% url 'register' %}" class="text-gray-800">Register</a></li>
+            <li><a href="{% url 'login' %}" class="text-gray-800">Login</a></li>
+            <li><a href="{% url 'logout' %}" class="text-gray-800">Logout</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
