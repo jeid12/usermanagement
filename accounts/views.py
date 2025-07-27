@@ -4,6 +4,7 @@ from product.models import Product
 from .models import User
 from .forms import UserLoginForm, UserRegistrationForm
 
+
 # Create your views here.
 
 def home(request):

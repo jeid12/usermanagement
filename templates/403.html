@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}403 - Access Forbidden{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen bg-gradient-to-br from-red-50 via-pink-50 to-orange-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="max-w-lg w-full">
+            <!-- Main Error Card -->
+            <div class="bg-white shadow-2xl rounded-3xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <!-- Header with Gradient -->
+                <div class="bg-gradient-to-r from-red-500 via-pink-500 to-red-600 px-8 py-12 text-center relative overflow-hidden">
+                    <!-- Background Pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                            </pattern>
+                            <rect width="100" height="100" fill="url(#grid)" />
+                        </svg>
+                    </div>
+                    
+                    <!-- Animated Shield Icon -->
+                    <div class="relative mb-6">
+                        <div class="mx-auto w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-pulse">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Error Code -->
+                    <h1 class="text-6xl font-black text-white mb-2 tracking-wider drop-shadow-lg">403</h1>
+                    <h2 class="text-2xl font-bold text-white text-opacity-90 mb-2">Access Forbidden</h2>
+                    <p class="text-white text-opacity-80 text-sm">You don't have permission to access this resource</p>
+                </div>
+
+                <!-- Content Body -->
+                <div class="px-8 py-10">
+                    <!-- Error Message -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Access Denied</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Sorry, you don't have the necessary permissions to view this page. 
+                            This could be due to:
+                        </p>
+                    </div>
+
+                    <!-- Reasons List -->
+                    <div class="mb-8">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2 mr-3"></div>
+                                <span class="text-gray-700 text-sm">Insufficient user privileges</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2 mr-3"></div>
+                                <span class="text-gray-700 text-sm">Restricted content or admin area</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-2 h-2 bg-red-400 rounded-full mt-2 mr-3"></div>
+                                <span class="text-gray-700 text-sm">Session expired or invalid authentication</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-4">
+                        <!-- Primary Action -->
+                        <a href="{% url 'home' %}" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transform transition duration-300 ease-in-out hover:scale-105 shadow-lg hover:shadow-xl">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Go to Homepage
+                        </a>
+
+                        <!-- Secondary Actions -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="javascript:history.back()" class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300 shadow-sm hover:shadow-md">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                </svg>
+                                Go Back
+                            </a>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'logout' %}" class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300 shadow-sm hover:shadow-md">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    Sign Out
+                                </a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300 shadow-sm hover:shadow-md">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    Sign In
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer with Contact Info -->
+                <div class="bg-gray-50 px-8 py-6 border-t border-gray-100">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-600 mb-2">
+                            <span class="font-medium">Need help?</span> Contact our support team
+                        </p>
+                        <div class="flex justify-center space-x-4 text-xs text-gray-500">
+                            <span>Error Code: 403</span>
+                            <span>•</span>
+                            <span>{% now "Y-m-d H:i" %}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-500">
+                    If you believe this is an error, please contact the site administrator
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-red-200 to-pink-200 rounded-full opacity-20 animate-bounce" style="animation-delay: 0s; animation-duration: 4s;"></div>
+        <div class="absolute top-1/2 -left-8 w-48 h-48 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-20 animate-bounce" style="animation-delay: 2s; animation-duration: 5s;"></div>
+        <div class="absolute bottom-8 right-1/3 w-32 h-32 bg-gradient-to-br from-pink-200 to-red-200 rounded-full opacity-20 animate-bounce" style="animation-delay: 1s; animation-duration: 3s;"></div>
+    </div>
+
+    <!-- Custom CSS for enhanced animations -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}

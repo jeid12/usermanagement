@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold text-gray-900">Edit Product</h1>
+                <p class="mt-2 text-sm text-gray-600">Update your product information</p>
+            </div>
+
+            <!-- Success/Error Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-50 border border-green-200 text-green-800{% else %}bg-red-50 border border-red-200 text-red-800{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+                <div class="px-8 py-6 bg-gradient-to-r from-blue-500 to-blue-600">
+                    <h2 class="text-xl font-semibold text-white">Product Information</h2>
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" class="p-8 space-y-6">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <h3 class="text-sm font-medium text-red-800">Please correct the errors below:</h3>
+                            <ul class="mt-2 text-sm text-red-700 list-disc list-inside">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Product Name -->
+                        <div class="md:col-span-2">
+                            <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                {{ form.name.label }}
+                                {% if form.name.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+                            {{ form.name }}
+                            {% if form.name.help_text %}
+                                <p class="mt-1 text-sm text-gray-500">{{ form.name.help_text }}</p>
+                            {% endif %}
+                            {% if form.name.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.name.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Price -->
+                        <div>
+                            <label for="{{ form.price.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                {{ form.price.label }}
+                                {% if form.price.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input type="number" name="{{ form.price.name }}" id="{{ form.price.id_for_label }}" 
+                                       class="pl-8 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 ease-in-out bg-white text-gray-900 placeholder-gray-500 shadow-sm hover:border-gray-400"
+                                       placeholder="0.00" step="0.01" min="0" {% if form.price.value %}value="{{ form.price.value }}"{% endif %}>
+                            </div>
+                            {% if form.price.help_text %}
+                                <p class="mt-1 text-sm text-gray-500">{{ form.price.help_text }}</p>
+                            {% endif %}
+                            {% if form.price.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.price.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Current Image Preview & New Upload -->
+                        <div>
+                            <label for="{{ form.image.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                {{ form.image.label }}
+                                {% if form.image.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+                            
+                            {% if product.image %}
+                                <div class="mb-3 p-3 bg-gray-50 rounded-lg">
+                                    <p class="text-sm text-gray-600 mb-2">Current image:</p>
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-20 h-20 object-cover rounded-lg shadow-sm">
+                                </div>
+                            {% endif %}
+                            
+                            {{ form.image }}
+                            {% if form.image.help_text %}
+                                <p class="mt-1 text-sm text-gray-500">{{ form.image.help_text }}</p>
+                            {% endif %}
+                            {% if form.image.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.image.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Description -->
+                        <div class="md:col-span-2">
+                            <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                {{ form.description.label }}
+                                {% if form.description.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+                            {{ form.description }}
+                            {% if form.description.help_text %}
+                                <p class="mt-1 text-sm text-gray-500">{{ form.description.help_text }}</p>
+                            {% endif %}
+                            {% if form.description.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex items-center justify-between pt-6">
+                        <a href="{% url 'product_list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Cancel
+                        </a>
+                        <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Update Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
